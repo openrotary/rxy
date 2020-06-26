@@ -47,10 +47,10 @@ while(<READ>) {
 		# 解析 @returns
 		if($_ =~ /\@returns\s/) {
 			my $text = $';
-			$text =~ s/[\{\}]//g;
+			$text =~ s/[\{\}\s]//g;
 
 			# 添加代码符号
-			print WRITE "\n\n**返回值类型**： $text";
+			print WRITE "\n\n**返回值类型**： <code>$text</code>";
 			next;
 		}
 
@@ -71,7 +71,7 @@ while(<READ>) {
 				$isNeed = '非必传';
 				$name =~ s/[\[\]]//g;
 			}
-			print WRITE "\n| $name | $type | $isNeed | $label |";
+			print WRITE "\n| $name | <code>$type</code> | $isNeed | $label |";
 			next;
 		}
 	}
